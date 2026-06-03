@@ -32,13 +32,13 @@ export default function Hero() {
             </div>
 
             {/* Main typographic block */}
-            <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-12 pt-[44vh] md:pt-[38vh] pb-32">
-                <div className="max-w-5xl">
+            <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-12 pt-[44vh] md:pt-[38vh] pb-32 flex justify-end">
+                <div className="max-w-2xl text-right">
                     <h1
                         data-testid={HERO.title}
                         className="font-serif font-light text-ink leading-[0.92] tracking-tight"
                         style={{
-                            fontSize: "clamp(3rem, 9vw, 9.5rem)",
+                            fontSize: "clamp(2.5rem, 6.5vw, 7rem)",
                         }}
                     >
                         <span className="block italic font-normal text-rust-deep">
@@ -50,7 +50,7 @@ export default function Hero() {
                         </span>
                     </h1>
 
-                    <div className="mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8 max-w-4xl">
+                    <div className="mt-12 flex flex-col items-end gap-6">
                         <div>
                             <div
                                 data-testid={HERO.name}
