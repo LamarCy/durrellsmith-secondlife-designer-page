@@ -12,12 +12,12 @@ export default function Footer() {
     return (
         <footer
             data-testid={FOOTER.root}
-            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 pt-16 pb-10"
+            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 pt-10 pb-10"
         >
-            {/* Big watermark line */}
-            <div className="overflow-hidden border-t border-ink/15 pt-12 pb-20">
-                <div className="font-serif italic font-light text-ink leading-none whitespace-nowrap text-[18vw] md:text-[14vw] tracking-tight">
-                    second&nbsp;life&nbsp;software.
+            {/* Wordmark — kept small to match the nav typography */}
+            <div className="border-t border-ink/15 pt-6 pb-6">
+                <div className="font-mono text-ink uppercase tracking-[0.28em] text-sm">
+                    second life software.
                 </div>
             </div>
 
@@ -38,7 +38,7 @@ export default function Footer() {
                                 href="#subscribe"
                                 className="hover:text-rust transition-colors"
                             >
-                                Subscribe
+                                Contact
                             </a>
                         </li>
                     </ul>
@@ -69,13 +69,13 @@ export default function Footer() {
                 <div>
                     <div className="text-ink/45 mb-3">Colophon</div>
                     <p className="leading-relaxed normal-case tracking-normal font-sans text-xs text-ink-soft">
-                        Set in Cormorant Garamond &amp; JetBrains Mono.
-                        Particle portrait rendered live in WebGL.
+                        Set in JetBrains Mono. Particle portrait rendered
+                        live in WebGL.
                     </p>
                 </div>
             </div>
 
-            <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-ink/15 pt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
+            <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-ink/15 pt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
                 <span>© 2026 Second Life Software</span>
                 <span>
                     Made by{" "}

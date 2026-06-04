@@ -17,17 +17,13 @@ export default function Hero() {
                 />
             </Suspense>
 
-            {/* Top-left meta */}
-            <div className="absolute top-28 left-6 md:left-12 z-10 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
+            {/* Top-right meta — kept on the right side, clear of the particle face */}
+            <div className="absolute top-28 right-6 md:right-12 z-10 text-right font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
                 <div>(01) — Portfolio / 2026</div>
                 <div className="mt-2 text-rust">
                     ● Currently designing
                 </div>
-            </div>
-
-            {/* Top-right meta */}
-            <div className="absolute top-28 right-6 md:right-12 z-10 text-right font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
-                <div>N 33.749° / W 84.388°</div>
+                <div className="mt-6">N 33.749° / W 84.388°</div>
                 <div className="mt-2">Atlanta, GA</div>
             </div>
 
@@ -71,8 +67,7 @@ export default function Hero() {
                             className="font-sans text-xs md:text-sm text-ink w-full text-left leading-relaxed bg-cream/70 backdrop-blur-[2px] px-4 py-3 rounded-sm border border-ink/5"
                         >
                             Crafting interfaces, identities and moving
-                            images for creators, engineers and founders
-                            — swapping wands for nodes since '19.
+                            images for creators, engineers and founders.
                         </p>
                     </div>
                 </div>

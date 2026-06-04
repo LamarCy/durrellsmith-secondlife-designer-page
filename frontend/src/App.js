@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import WorkShowcase from "@/components/WorkShowcase";
+import About from "@/components/About";
 import SubscribePlaceholder from "@/components/SubscribePlaceholder";
 import Footer from "@/components/Footer";
 import HeartCounter from "@/components/HeartCounter";
@@ -16,6 +17,7 @@ const Home = () => {
             <main>
                 <Hero />
                 <WorkShowcase />
+                <About />
                 <SubscribePlaceholder />
             </main>
             <Footer />

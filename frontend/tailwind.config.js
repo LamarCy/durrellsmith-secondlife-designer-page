@@ -5,9 +5,12 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                serif: ["Cormorant Garamond", "serif"],
+                // Unified site typography — everything renders in JetBrains Mono
+                // to match the nav button. The serif/sans aliases are kept so
+                // existing utility classes keep working without site-wide edits.
+                serif: ["JetBrains Mono", "monospace"],
                 mono: ["JetBrains Mono", "monospace"],
-                sans: ["Manrope", "sans-serif"],
+                sans: ["JetBrains Mono", "monospace"],
             },
             borderRadius: {
                 lg: "var(--radius)",

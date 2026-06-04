@@ -4,61 +4,61 @@ import { WORK } from "@/constants/testIds";
 const projects = [
     {
         i: "01",
-        title: "Untitled Field Recordings",
-        client: "Solo / Editorial",
-        year: "2025",
-        tags: ["Identity", "Print"],
-        img: "https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=1600&q=80",
+        title: "Sankofa",
+        client: "Mixed Media Assemblage",
+        year: "2018",
+        tags: ["Assemblage", "Mixed Media"],
+        img: "https://dashcreatives.art/images/sankofa.jpg",
         span: "md:col-span-8 md:row-span-2",
         aspect: "aspect-[4/5] md:aspect-auto md:h-full",
     },
     {
         i: "02",
-        title: "Brittle Star — Vinyl",
-        client: "Mosaic Records",
-        year: "2024",
-        tags: ["Packaging"],
-        img: "https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?auto=format&fit=crop&w=1200&q=80",
+        title: "Palm Springs",
+        client: "Watercolor / Ink / Turmeric",
+        year: "2025",
+        tags: ["Watercolor"],
+        img: "https://dashcreatives.art/images/palm-springs.png",
         span: "md:col-span-4",
         aspect: "aspect-square",
     },
     {
         i: "03",
-        title: "Kiln & Clay",
-        client: "Studio Goods",
+        title: "Ashley 1",
+        client: "Oil on Canvas",
         year: "2024",
-        tags: ["Web", "Brand"],
-        img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=1200&q=80",
+        tags: ["Oil", "Portrait"],
+        img: "https://dashcreatives.art/images/ashley-1.png",
         span: "md:col-span-4",
         aspect: "aspect-square",
     },
     {
         i: "04",
-        title: "Quiet Engines",
-        client: "Second Life Software",
+        title: "The Songwriter",
+        client: "Watercolor / India Ink",
         year: "2025",
-        tags: ["Product", "Motion"],
-        img: "https://images.unsplash.com/photo-1610552050890-fe99536c2615?auto=format&fit=crop&w=1600&q=80",
+        tags: ["Watercolor", "Ink"],
+        img: "https://dashcreatives.art/images/the-songwriter.png",
         span: "md:col-span-6",
         aspect: "aspect-[5/4]",
     },
     {
         i: "05",
-        title: "After the Drought",
-        client: "Editorial Series",
-        year: "2024",
-        tags: ["Illustration"],
-        img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=1600&q=80",
+        title: "Holy Matrimony",
+        client: "Mixed Media Assemblage",
+        year: "2018",
+        tags: ["Assemblage"],
+        img: "https://dashcreatives.art/images/holy-matrimony.jpg",
         span: "md:col-span-6",
         aspect: "aspect-[5/4]",
     },
     {
         i: "06",
-        title: "Lone Pine Letter",
-        client: "Newsletter / Self",
-        year: "Ongoing",
-        tags: ["Editorial", "Web"],
-        img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=80",
+        title: "Duende",
+        client: "Watercolor",
+        year: "2022",
+        tags: ["Watercolor"],
+        img: "https://dashcreatives.art/images/duende.png",
         span: "md:col-span-12",
         aspect: "aspect-[16/7]",
     },
@@ -69,10 +69,10 @@ export default function WorkShowcase() {
         <section
             id="work"
             data-testid={WORK.section}
-            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 py-24 md:py-40"
+            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 py-16 md:py-24"
         >
             {/* Section header */}
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16 md:mb-24 border-t border-ink/15 pt-10">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16 border-t border-ink/15 pt-10">
                 <div>
                     <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-rust mb-6">
                         (02) — Selected Work
@@ -85,9 +85,9 @@ export default function WorkShowcase() {
                     </h2>
                 </div>
                 <p className="font-sans text-sm text-ink-soft max-w-xs leading-relaxed md:text-right md:self-end">
-                    A rotating set of recent commissions and personal
-                    studies — identities, editorial, product, the occasional
-                    record sleeve.
+                    Two decades of work across watercolor, oil, India ink
+                    and mixed media assemblage — portraiture, abstraction
+                    and the unruly space between.
                 </p>
             </div>
 
@@ -120,8 +120,8 @@ export default function WorkShowcase() {
                                 <span>{p.year}</span>
                             </div>
 
-                            {/* Title slab */}
-                            <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
+                            {/* Title slab — hairline border on top matches the nav bar */}
+                            <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 border-t border-cream/20">
                                 <div className="overflow-hidden">
                                     <h3 className="font-serif text-2xl md:text-4xl lg:text-5xl text-cream leading-[0.95] translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
                                         {p.title}
@@ -139,17 +139,6 @@ export default function WorkShowcase() {
                 ))}
             </div>
 
-            {/* Foot row */}
-            <div className="mt-16 flex items-center justify-between border-t border-ink/15 pt-8 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-soft">
-                <span>End / Section 02</span>
-                <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:text-rust transition-colors"
-                >
-                    View the archive →
-                </a>
-            </div>
         </section>
     );
 }

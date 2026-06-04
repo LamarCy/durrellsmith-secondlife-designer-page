@@ -20,10 +20,10 @@ export default function SubscribePlaceholder() {
         <section
             id="subscribe"
             data-testid={SUBSCRIBE.section}
-            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-ink/15"
+            className="relative max-w-screen-2xl mx-auto px-6 md:px-12 py-16 md:py-24 border-t border-ink/15"
         >
-            <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-rust mb-10">
-                (03) — Newsletter
+            <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-rust mb-8">
+                (04) — Contact
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
@@ -61,7 +61,7 @@ export default function SubscribePlaceholder() {
                             type="submit"
                             data-testid={SUBSCRIBE.submit}
                             className="absolute right-0 bottom-3 w-11 h-11 rounded-full bg-rust text-cream flex items-center justify-center hover:bg-rust-deep active:scale-95 transition-all"
-                            aria-label="Subscribe"
+                            aria-label="Contact"
                         >
                             <svg
                                 width="16"
