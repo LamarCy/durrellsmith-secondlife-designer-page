@@ -68,7 +68,7 @@ export default function Hero() {
 
                         <p
                             data-testid={HERO.subtitle}
-                            className="font-sans text-xs md:text-sm text-ink max-w-xs leading-relaxed bg-cream/70 backdrop-blur-[2px] px-3.5 py-2.5 rounded-sm border border-ink/5"
+                            className="font-sans text-xs md:text-sm text-ink w-full text-left leading-relaxed bg-cream/70 backdrop-blur-[2px] px-4 py-3 rounded-sm border border-ink/5"
                         >
                             Crafting interfaces, identities and moving
                             images for creators, engineers and founders
