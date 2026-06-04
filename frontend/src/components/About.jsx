@@ -37,53 +37,41 @@ export default function About() {
                         something unexpected.
                     </p>
                     <p>
-                        Before wireframes and user flows, there were
-                        canvases and power chords. Formally trained as a
-                        painter and mixed media artist, and a lifelong
-                        songwriter and guitarist rooted in rock and blues,
-                        Durrell spent over a decade building a creative
+                        Formally trained as a painter and mixed media
+                        artist, and a lifelong songwriter and guitarist
+                        rooted in rock and blues, Durrell built a creative
                         practice where gesture, grit, and feeling were the
-                        only real rules. Working in watercolor, India ink,
-                        oil, and assemblage — and in the raw, honest
-                        language of blues-soaked rock — he learned to read
-                        a composition the way a user reads a screen:
-                        instinctively, emotionally, and in about three
-                        seconds flat.
+                        only real rules. That same eye that knew when a
+                        painting was finished — and when it wasn&rsquo;t —
+                        turned out to be exactly what product design
+                        demanded. The same ear tuned to the tension and
+                        release of a blues progression translated naturally
+                        into the rhythm of a user journey.
                     </p>
 
                     <p className="font-serif italic text-2xl md:text-3xl text-rust-deep leading-snug py-4">
-                        That instinct is what he brings to Second Life
-                        Software.
+                        What began in the studio became something larger.
                     </p>
 
                     <p>
-                        Durrell approaches UX the way he approaches a blank
-                        canvas or a slow blues — with respect for the
-                        person on the other side of it. Good design, like
-                        good painting or a guitar line that cuts right to
-                        the bone, doesn&rsquo;t announce itself. It creates
-                        conditions for something to be felt, understood, or
-                        discovered. The mark that works is the one you
-                        don&rsquo;t notice because it&rsquo;s exactly
-                        right. The note that lands is the one that hurt
-                        just enough to mean something.
+                        Today Durrell works as a product designer and the
+                        liaison between idea, design, and vision for web
+                        and mobile applications. His specialties include
+                        UI/UX design, product design, animation creation,
+                        and technical guidance for web and mobile
+                        platforms. He doesn&rsquo;t just design screens —
+                        he helps teams understand what they&rsquo;re really
+                        building, and why it should feel the way it does.
                     </p>
                     <p>
-                        His background across visual art and music gives
-                        him an uncommon fluency in the full grammar of
-                        experience design — visual hierarchy, compositional
-                        tension, color and contrast, rhythm, tension and
-                        release, and the subtle interplay between
-                        what&rsquo;s present and what&rsquo;s deliberately
-                        left out. These aren&rsquo;t soft skills imported
-                        from another field. They&rsquo;re the same tools,
-                        applied to a new surface.
-                    </p>
-                    <p>
-                        At Second Life Software, Durrell is focused on
-                        bringing that same rigor and raw intuition to
-                        digital experiences that are not only functional,
-                        but worth returning to.
+                        At Second Life Software, he brings that full range
+                        to every project. The painter&rsquo;s eye. The
+                        musician&rsquo;s ear. The designer&rsquo;s
+                        discipline. Good design, like a painting that stops
+                        you cold or a guitar line that cuts right to the
+                        bone, doesn&rsquo;t announce itself. It creates
+                        conditions for something to be felt, understood,
+                        and remembered.
                     </p>
 
                     <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink-soft pt-6 border-t border-ink/15 mt-10">
