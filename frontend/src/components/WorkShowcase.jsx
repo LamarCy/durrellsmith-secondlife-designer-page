@@ -9,8 +9,6 @@ const projects = [
         year: "2018",
         tags: ["Assemblage", "Mixed Media"],
         img: "https://dashcreatives.art/images/sankofa.jpg",
-        span: "md:col-span-8 md:row-span-2",
-        aspect: "aspect-[4/5] md:aspect-auto md:h-full",
     },
     {
         i: "02",
@@ -19,8 +17,6 @@ const projects = [
         year: "2025",
         tags: ["Watercolor"],
         img: "https://dashcreatives.art/images/palm-springs.png",
-        span: "md:col-span-4",
-        aspect: "aspect-square",
     },
     {
         i: "03",
@@ -29,8 +25,6 @@ const projects = [
         year: "2024",
         tags: ["Oil", "Portrait"],
         img: "https://dashcreatives.art/images/ashley-1.png",
-        span: "md:col-span-4",
-        aspect: "aspect-square",
     },
     {
         i: "04",
@@ -39,8 +33,6 @@ const projects = [
         year: "2025",
         tags: ["Watercolor", "Ink"],
         img: "https://dashcreatives.art/images/the-songwriter.png",
-        span: "md:col-span-6",
-        aspect: "aspect-[5/4]",
     },
     {
         i: "05",
@@ -49,8 +41,6 @@ const projects = [
         year: "2018",
         tags: ["Assemblage"],
         img: "https://dashcreatives.art/images/holy-matrimony.jpg",
-        span: "md:col-span-6",
-        aspect: "aspect-[5/4]",
     },
     {
         i: "06",
@@ -59,8 +49,6 @@ const projects = [
         year: "2022",
         tags: ["Watercolor"],
         img: "https://dashcreatives.art/images/duende.png",
-        span: "md:col-span-12",
-        aspect: "aspect-[16/7]",
     },
 ];
 
@@ -85,19 +73,17 @@ export default function WorkShowcase() {
                 </p>
             </div>
 
-            {/* Asymmetric bento grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 auto-rows-auto">
+            {/* Uniform gallery grid — equal-sized tiles, softened corners */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
                 {projects.map((p, idx) => (
                     <a
                         key={p.i}
                         href="#"
                         data-testid={WORK.item(idx)}
                         onClick={(e) => e.preventDefault()}
-                        className={`group relative overflow-hidden bg-sand-deep block ${p.span}`}
+                        className="group relative overflow-hidden bg-sand-deep block rounded-2xl"
                     >
-                        <div
-                            className={`relative w-full ${p.aspect} overflow-hidden`}
-                        >
+                        <div className="relative w-full aspect-[4/5] overflow-hidden">
                             <img
                                 src={p.img}
                                 alt={p.title}
@@ -115,9 +101,9 @@ export default function WorkShowcase() {
                             </div>
 
                             {/* Title slab — hairline border on top matches the nav bar */}
-                            <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 border-t border-cream/20">
+                            <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 border-t border-cream/20">
                                 <div className="overflow-hidden">
-                                    <h3 className="font-serif text-2xl md:text-4xl lg:text-5xl text-cream leading-[0.95] translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                                    <h3 className="font-serif text-2xl md:text-3xl text-cream leading-[0.95] translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
                                         {p.title}
                                     </h3>
                                 </div>
