@@ -74,15 +74,9 @@ export default function WorkShowcase() {
             {/* Section header */}
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16 border-t border-ink/15 pt-10">
                 <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-rust mb-6">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-rust">
                         (02) — Selected Work
                     </div>
-                    <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-ink leading-[0.95]">
-                        Things made,
-                        <br />
-                        mostly with{" "}
-                        <span className="italic text-rust-deep">care</span>.
-                    </h2>
                 </div>
                 <p className="font-sans text-sm text-ink-soft max-w-xs leading-relaxed md:text-right md:self-end">
                     Two decades of work across watercolor, oil, India ink
