@@ -61,8 +61,7 @@ export default function Footer() {
                 <div>
                     <div className="text-ink/45 mb-3">Studio</div>
                     <p className="leading-relaxed normal-case tracking-normal font-sans text-xs text-ink-soft">
-                        Second Life Software is a design practice by
-                        Durrell Smith. Based in Atlanta, working
+                        Durrell Smith is based in Atlanta, working
                         everywhere.
                     </p>
                 </div>

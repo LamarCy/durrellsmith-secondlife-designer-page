@@ -29,10 +29,10 @@ export default function SubscribePlaceholder() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
                 <div className="md:col-span-7">
                     <h2 className="font-serif text-5xl md:text-7xl lg:text-[7vw] font-light leading-[0.95] text-ink">
-                        So much
+                        Get
                         <br />
                         <span className="italic text-rust-deep">
-                            info
+                            connected
                         </span>
                         <span className="text-rust">.</span>
                     </h2>

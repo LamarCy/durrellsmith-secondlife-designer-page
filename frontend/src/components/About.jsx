@@ -13,10 +13,10 @@ export default function About() {
                         (03) — About
                     </div>
                     <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-ink leading-[0.95]">
-                        Came through a
+                        Came from
                         <br />
                         <span className="italic text-rust-deep">
-                            side door
+                            another planet
                         </span>
                         <span className="text-rust">.</span>
                     </h2>
@@ -33,7 +33,7 @@ export default function About() {
                 <div className="md:col-span-8 md:col-start-3 font-sans text-base md:text-lg text-ink leading-[1.7] space-y-6">
                     <p>
                         Durrell Smith came to UX design the way most good
-                        things arrive — through a side door, carrying
+                        things arrive — from another planet, carrying
                         something unexpected.
                     </p>
                     <p>

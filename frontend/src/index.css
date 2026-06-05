@@ -160,3 +160,306 @@ html {
 .text-balance {
     text-wrap: balance;
 }
+
+/* ----------------------------------------------------------------------
+   Artwork paper-plane flock — each artwork is a tiny paper plane that
+   orbits the centre of its cell. Click a plane to land it: the orbit
+   pauses and the plane unfolds into the full rectangular artwork.
+   ---------------------------------------------------------------------- */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Four independent oscillators stack on nested elements to produce
+   wind-blown drift. The first three are slow primary tracks (lateral,
+   vertical, rocking); the fourth is a fast micro-jitter at a different
+   period that keeps the motion from ever looking mechanical. Together
+   they trace Lissajous paths that effectively never repeat. */
+@keyframes pp-drift-x {
+    from {
+        translate: calc(var(--dx-amp, 30px) * -1) 0;
+    }
+    to {
+        translate: var(--dx-amp, 30px) 0;
+    }
+}
+@keyframes pp-drift-y {
+    from {
+        translate: 0 calc(var(--dy-amp, 22px) * -1);
+    }
+    to {
+        translate: 0 var(--dy-amp, 22px);
+    }
+}
+@keyframes pp-spin {
+    from {
+        transform: rotate(calc(var(--spin-amp, 14deg) * -1));
+    }
+    to {
+        transform: rotate(var(--spin-amp, 14deg));
+    }
+}
+/* Diagonal micro-jitter — a small, fast 2D oscillation layered on top
+   of the slow primary tracks. Different period than the others so the
+   motion never looks repetitive. */
+@keyframes pp-jitter {
+    0% {
+        translate:
+            calc(var(--jit-amp, 6px) * -1)
+            calc(var(--jit-amp, 6px) * 0.5);
+    }
+    50% {
+        translate:
+            calc(var(--jit-amp, 6px) * 0.7)
+            calc(var(--jit-amp, 6px) * -1);
+    }
+    100% {
+        translate:
+            var(--jit-amp, 6px)
+            calc(var(--jit-amp, 6px) * 0.4);
+    }
+}
+
+.pp-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.15;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition:
+        transform 0.7s cubic-bezier(0.18, 0.7, 0.25, 1.05),
+        z-index 0s;
+    overflow: visible;
+    isolation: isolate;
+}
+
+/* Each wrapper fills its parent so the plane stays sized correctly;
+   the wrappers carry transforms (translate / rotate) which compose
+   down the chain to produce wind-blown motion. The shared cubic-bezier
+   (.45, 0, .55, 1) is a gentler, more sinusoidal ease than ease-in-out
+   — direction changes are quieter, the slow-down at the extremes is
+   smoother. */
+.pp-drift-x {
+    position: absolute;
+    inset: 0;
+    animation: pp-drift-x var(--dx-dur, 18s)
+        cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--dx-delay, 0s);
+    animation-direction: var(--dx-dir, alternate);
+}
+.pp-drift-y {
+    position: absolute;
+    inset: 0;
+    animation: pp-drift-y var(--dy-dur, 14s)
+        cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--dy-delay, 0s);
+    animation-direction: var(--dy-dir, alternate);
+}
+.pp-jitter {
+    position: absolute;
+    inset: 0;
+    animation: pp-jitter var(--jit-dur, 5s)
+        cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+    animation-delay: var(--jit-delay, 0s);
+}
+.pp-spin {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    animation: pp-spin var(--spin-dur, 20s)
+        cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--spin-delay, 0s);
+    animation-direction: var(--spin-dir, alternate);
+    transition: transform 0.8s cubic-bezier(0.18, 0.7, 0.25, 1.05);
+}
+
+.pp-plane {
+    position: relative;
+    width: 62%;
+    aspect-ratio: 1 / 1.4;
+    /* Paper plane silhouette — nose at top centre, wings flare back to
+       the bottom corners with a body-fold notch dipping up between the
+       two wing roots. The notch is what makes it read as folded paper
+       (the underside of the spine) rather than a flat triangle. */
+    clip-path: polygon(
+        50% 4%,
+        100% 88%,
+        82% 100%,
+        50% 78%,
+        18% 100%,
+        0 88%
+    );
+    filter: drop-shadow(0 10px 18px rgba(42, 24, 16, 0.4));
+    transition:
+        clip-path 0.85s cubic-bezier(0.18, 0.7, 0.25, 1.05),
+        width 0.85s cubic-bezier(0.18, 0.7, 0.25, 1.05),
+        aspect-ratio 0.85s cubic-bezier(0.18, 0.7, 0.25, 1.05),
+        transform 0.85s cubic-bezier(0.18, 0.7, 0.25, 1.05),
+        filter 0.6s ease-out;
+    will-change: clip-path, width;
+}
+
+.pp-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Centre fold of the paper — strong highlight + shadow running from
+   nose to tail makes the spine read as a hard crease in folded paper. */
+.pp-fold {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        transparent 45%,
+        rgba(0, 0, 0, 0.35) 49.2%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(0, 0, 0, 0.3) 50.8%,
+        transparent 55%
+    );
+    transition: opacity 0.6s ease-out;
+}
+
+/* Wing planes — light hits the left wing, the right wing reads as the
+   undersurface (folded down) and gets a soft shadow. This is what makes
+   the plane look folded rather than flat-cut. */
+.pp-paper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        /* underside shadow on the right wing */
+            linear-gradient(
+                100deg,
+                transparent 50%,
+                rgba(42, 24, 16, 0.3) 52%,
+                rgba(42, 24, 16, 0.18) 100%
+            ),
+        /* highlight catching the left wing */
+            linear-gradient(
+                260deg,
+                transparent 50%,
+                rgba(249, 239, 222, 0.32) 52%,
+                rgba(249, 239, 222, 0.05) 100%
+            ),
+        /* warm paper tone so the artwork reads as printed paper */
+            linear-gradient(
+                180deg,
+                rgba(249, 239, 222, 0.12),
+                rgba(42, 24, 16, 0.1)
+            );
+    mix-blend-mode: overlay;
+    transition: opacity 0.6s ease-out;
+}
+
+/* Title band — hidden while flying, fades in on landing. */
+.pp-title {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: 4%;
+    padding: 0.9rem 1rem 1rem;
+    border-radius: 0.6rem;
+    background: linear-gradient(
+        to top,
+        rgba(42, 24, 16, 0.78) 0%,
+        rgba(42, 24, 16, 0.4) 70%,
+        transparent 100%
+    );
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out 0.25s;
+    z-index: 2;
+}
+.pp-title h3 {
+    margin: 0;
+    font-family:
+        "JetBrains Mono",
+        ui-monospace,
+        monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f9efde;
+    line-height: 1.1;
+}
+.pp-title-meta {
+    margin-top: 0.45rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-family:
+        "JetBrains Mono",
+        ui-monospace,
+        monospace;
+    font-size: 0.65rem;
+    color: rgba(249, 239, 222, 0.78);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+/* Landed state — the plane stops orbiting and unfurls into the full
+   rectangular artwork. The card lifts above neighbours via z-index and
+   scales out a touch to feel like a "full display". */
+.pp-card.is-landed {
+    z-index: 60;
+}
+.pp-card.is-landed .pp-drift-x,
+.pp-card.is-landed .pp-drift-y,
+.pp-card.is-landed .pp-jitter,
+.pp-card.is-landed .pp-spin {
+    animation: none;
+    translate: 0 0;
+    transform: none;
+}
+.pp-card.is-landed .pp-plane {
+    width: 130%;
+    aspect-ratio: 4 / 5;
+    /* 6-point rectangle whose vertices match the plane silhouette's
+       index order — guarantees a smooth morph (CSS only interpolates
+       clip-path polygons when point counts match). */
+    clip-path: polygon(
+        50% 0%,
+        100% 0%,
+        100% 100%,
+        50% 100%,
+        0 100%,
+        0 0
+    );
+    filter: drop-shadow(0 26px 50px rgba(42, 24, 16, 0.5));
+}
+.pp-card.is-landed .pp-fold,
+.pp-card.is-landed .pp-paper {
+    opacity: 0;
+}
+.pp-card.is-landed .pp-title {
+    opacity: 1;
+}
+
+/* Hovering a flying plane gentles the wind — pause every drift track
+   so the visitor can comfortably aim at and click the plane. */
+.pp-card:not(.is-landed):hover .pp-drift-x,
+.pp-card:not(.is-landed):hover .pp-drift-y,
+.pp-card:not(.is-landed):hover .pp-jitter,
+.pp-card:not(.is-landed):hover .pp-spin {
+    animation-play-state: paused;
+}
+.pp-card:not(.is-landed):hover .pp-plane {
+    filter: drop-shadow(0 14px 22px rgba(42, 24, 16, 0.45));
+}
