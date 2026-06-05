@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { WORK } from "@/constants/testIds";
 import OrbitingWork from "@/components/OrbitingWork";
+import MusicBoatFleet from "@/components/MusicBoatFleet";
 
 /* ------------------------------------------------------------------------
    Real planetary orbits — mean longitudes at J2000 epoch + mean motion
@@ -406,12 +407,7 @@ export default function WorkShowcase() {
                                 accent={selected.color}
                             />
                         )}
-                        {selected.key === "music" && (
-                            <ComingSoonFan
-                                label="Music"
-                                accent={selected.color}
-                            />
-                        )}
+                        {selected.key === "music" && <MusicBoatFleet />}
                     </div>
                 </div>
             )}

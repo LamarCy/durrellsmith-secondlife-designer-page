@@ -463,3 +463,275 @@ html {
 .pp-card:not(.is-landed):hover .pp-plane {
     filter: drop-shadow(0 14px 22px rgba(42, 24, 16, 0.45));
 }
+
+/* ----------------------------------------------------------------------
+   Music planet — paper sailboats drifting across the page. Each boat is
+   a clip-path silhouette (triangular sail above a hull) painted with the
+   track's SoundCloud artwork. Boats sail from left to right with a
+   gentle on-water bob. The fleet floats on the cream page background —
+   no sea, no panel.
+   ---------------------------------------------------------------------- */
+
+.paper-boat-fleet {
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    overflow: hidden;
+}
+
+/* Sail across the page — boats enter from the left and exit at the
+   right, then loop. Varied speeds per boat make the fleet feel alive. */
+@keyframes boat-sail {
+    0% {
+        transform: translateX(-160%);
+    }
+    100% {
+        transform: translateX(720%);
+    }
+}
+
+/* On-water bob — small slow vertical oscillation so the hull rides
+   imagined waves. Slower than wing-flap was for the birds. */
+@keyframes boat-bob {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+    25% {
+        translate: 0 -4px;
+    }
+    75% {
+        translate: 0 4px;
+    }
+}
+
+.paper-boat {
+    position: absolute;
+    top: var(--boat-lane, 20px);
+    left: 0;
+    width: 130px;
+    height: 130px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    animation: boat-sail var(--boat-speed, 36s) linear infinite;
+    animation-delay: var(--boat-delay, 0s);
+    z-index: 1;
+}
+.paper-boat:hover {
+    animation-play-state: paused;
+    z-index: 5;
+}
+
+.paper-boat-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Side-profile paper sailboat — triangular sail above a hull:
+         (50%, 5%)   sail apex
+         (66%, 60%)  sail right base
+         (100%, 60%) hull top-right corner
+         (92%, 92%)  hull bottom-right (curved inward)
+         (8%, 92%)   hull bottom-left (curved inward)
+         (0%, 60%)   hull top-left corner
+         (34%, 60%)  sail left base — back up to apex
+       The sail and hull share their "deck" edge so it forms one
+       continuous folded-paper outline. */
+    clip-path: polygon(
+        50% 5%,
+        66% 60%,
+        100% 60%,
+        92% 92%,
+        8% 92%,
+        0 60%,
+        34% 60%
+    );
+    filter: drop-shadow(0 8px 14px rgba(42, 24, 16, 0.4));
+    transition: filter 0.4s ease-out;
+    animation: boat-bob var(--boat-bob-dur, 2s) ease-in-out infinite;
+    animation-delay: var(--boat-bob-delay, 0s);
+    background-color: var(--boat-tint, #c4432c);
+}
+.paper-boat:hover .paper-boat-body {
+    filter: drop-shadow(0 14px 22px rgba(42, 24, 16, 0.55));
+}
+
+.paper-boat-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.paper-boat-tint {
+    position: absolute;
+    inset: 0;
+    background: var(--boat-tint, #c4432c);
+}
+
+/* Mast crease — vertical highlight/shadow line down the centre of the
+   sail. Reads as the spine of the folded paper. */
+.paper-boat-mast {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        transparent 48%,
+        rgba(0, 0, 0, 0.3) 49.4%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(0, 0, 0, 0.22) 50.6%,
+        transparent 52%
+    );
+    mix-blend-mode: multiply;
+}
+
+/* Sail diagonal fold — slight crease from sail apex toward the deck so
+   the sail looks folded, not flat. */
+.paper-boat-fold {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        118deg,
+        transparent 50%,
+        rgba(0, 0, 0, 0.16) 51%,
+        transparent 52%
+    );
+    mix-blend-mode: multiply;
+}
+
+/* Paper sheen — light catches the front-facing sail face, the
+   back-facing fold reads as the shadowed underside. */
+.paper-boat-sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            260deg,
+            rgba(249, 239, 222, 0.4) 0%,
+            transparent 50%
+        ),
+        linear-gradient(
+            80deg,
+            rgba(42, 24, 16, 0.3) 0%,
+            transparent 55%
+        );
+    mix-blend-mode: overlay;
+}
+
+/* Waterline — a faint horizontal hairline at the deck where the sail
+   meets the hull, plus a darker band along the hull's underside. */
+.paper-boat-waterline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60%;
+    height: 2px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.45),
+        rgba(42, 24, 16, 0.35)
+    );
+    pointer-events: none;
+}
+
+/* Tiny pennant at the top of the mast — rust accent so the boat
+   has a little flair. */
+.paper-boat-flag {
+    position: absolute;
+    left: 52%;
+    top: 4%;
+    width: 8px;
+    height: 5px;
+    background: #c4432c;
+    clip-path: polygon(0 0, 100% 35%, 0 70%);
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover-only label with the track title */
+.paper-boat-label {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    background: rgba(42, 24, 16, 0.85);
+    color: #f9efde;
+    font-family:
+        "JetBrains Mono",
+        ui-monospace,
+        monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-out;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.paper-boat:hover .paper-boat-label {
+    opacity: 1;
+}
+
+/* ----- Player modal ----- */
+.music-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 24, 16, 0.65);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fade-up 0.3s ease-out backwards;
+}
+.music-modal {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg, #f9efde);
+    border: 1px solid rgba(42, 24, 16, 0.15);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+    animation: fade-up 0.4s cubic-bezier(0.18, 0.7, 0.25, 1.1) backwards;
+}
+.music-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(42, 24, 16, 0.15);
+    background: rgba(42, 24, 16, 0.05);
+    color: #2a1810;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+.music-modal-close:hover {
+    background: rgba(42, 24, 16, 0.12);
+    transform: rotate(90deg);
+}
+.music-modal-title {
+    margin-bottom: 16px;
+    padding-right: 40px;
+}
