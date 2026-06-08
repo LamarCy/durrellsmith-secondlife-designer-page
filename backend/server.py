@@ -17,10 +17,17 @@ import requests
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection — optional. The portfolio page only needs the
+# Behance proxy endpoint, which doesn't touch Mongo. The /api/status
+# endpoints below require Mongo; if MONGO_URL isn't set, they 503 but
+# the rest of the API keeps working.
+mongo_url = os.environ.get('MONGO_URL')
+mongo_db_name = os.environ.get('DB_NAME')
+client = None
+db = None
+if mongo_url and mongo_db_name:
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[mongo_db_name]
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -45,20 +52,31 @@ class StatusCheckCreate(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+def _require_db():
+    if db is None:
+        raise HTTPException(
+            status_code=503,
+            detail="MongoDB not configured (set MONGO_URL + DB_NAME).",
+        )
+
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
+    _require_db()
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
-    
+
     # Convert to dict and serialize datetime to ISO string for MongoDB
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    
+
     _ = await db.status_checks.insert_one(doc)
     return status_obj
 
+
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    _require_db()
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
 
@@ -214,4 +232,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()
