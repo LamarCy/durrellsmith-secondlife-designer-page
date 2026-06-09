@@ -2,7 +2,7 @@
 
 > A multidisciplinary portfolio site for **Durrell Smith** — UX designer, painter, songwriter. One page; three planets; live data.
 
-**Live:** _(deploy URL — see [Deployment](#deployment) below)_
+**Live:** [durrellsmith-frontend.onrender.com](https://durrellsmith-frontend.onrender.com)
 **Portfolio (fine art):** [dashcreatives.art](https://dashcreatives.art)
 **Behance (UX work):** [behance.net/dashcreatives](https://www.behance.net/dashcreatives)
 **SoundCloud (music):** [soundcloud.com/durrell-smith](https://soundcloud.com/durrell-smith)
